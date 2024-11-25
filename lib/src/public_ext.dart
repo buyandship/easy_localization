@@ -1,7 +1,9 @@
+import 'package:flutter/widgets.dart';
+
+import 'package:intl/intl.dart';
+
 import 'package:easy_localization/src/exceptions.dart';
 import 'package:easy_localization/src/localization.dart';
-import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 
 import 'easy_localization_app.dart';
 import 'public.dart' as ez;
@@ -14,31 +16,26 @@ import 'public.dart' as ez;
 /// ```
 extension TextTranslateExtension on Text {
   /// {@macro tr}
-  Text tr(
-          {List<String>? args,
-          BuildContext? context,
-          Map<String, String>? namedArgs,
-          String? gender}) =>
-      Text(
-          ez.tr(
-            data ?? '',
-            context: context,
-            args: args,
-            namedArgs: namedArgs,
-            gender: gender,
-          ),
-          key: key,
-          style: style,
-          strutStyle: strutStyle,
-          textAlign: textAlign,
-          textDirection: textDirection,
-          locale: locale,
-          softWrap: softWrap,
-          overflow: overflow,
-          textScaleFactor: textScaleFactor,
-          maxLines: maxLines,
-          semanticsLabel: semanticsLabel,
-          textWidthBasis: textWidthBasis);
+  Text tr({List<String>? args, BuildContext? context, Map<String, String>? namedArgs, String? gender}) => Text(
+      ez.tr(
+        data ?? '',
+        context: context,
+        args: args,
+        namedArgs: namedArgs,
+        gender: gender,
+      ),
+      key: key,
+      style: style,
+      strutStyle: strutStyle,
+      textAlign: textAlign,
+      textDirection: textDirection,
+      locale: locale,
+      softWrap: softWrap,
+      overflow: overflow,
+      textScaleFactor: textScaleFactor,
+      maxLines: maxLines,
+      semanticsLabel: semanticsLabel,
+      textWidthBasis: textWidthBasis);
 
   /// {@macro plural}
   Text plural(
@@ -87,8 +84,7 @@ extension StringTranslateExtension on String {
     String? gender,
     BuildContext? context,
   }) =>
-      ez.tr(this,
-          context: context, args: args, namedArgs: namedArgs, gender: gender);
+      ez.tr(this, context: context, args: args, namedArgs: namedArgs, gender: gender);
 
   bool trExists() => ez.trExists(this);
 
@@ -130,18 +126,18 @@ extension BuildContextEasyLocalizationExtension on BuildContext {
   Locale get locale => EasyLocalization.of(this)!.locale;
 
   /// Change app locale
-  Future<void> setLocale(Locale val) async =>
-      EasyLocalization.of(this)!.setLocale(val);
+  Future<void> setLocale(Locale val) async => EasyLocalization.of(this)!.setLocale(val);
+
+  /// Force reload
+  Future<void> forceReload() async => EasyLocalization.of(this)!.forceReload();
 
   /// Old Change app locale
-  @Deprecated(
-      'This is the func used in the old version of EasyLocalization. The modern func is `setLocale(val)` . '
+  @Deprecated('This is the func used in the old version of EasyLocalization. The modern func is `setLocale(val)` . '
       'This feature was deprecated after v3.0.0')
   set locale(Locale val) => EasyLocalization.of(this)!.setLocale(val);
 
   /// Get List of supported locales.
-  List<Locale> get supportedLocales =>
-      EasyLocalization.of(this)!.supportedLocales;
+  List<Locale> get supportedLocales => EasyLocalization.of(this)!.supportedLocales;
 
   /// Get fallback locale
   Locale? get fallbackLocale => EasyLocalization.of(this)!.fallbackLocale;
@@ -156,12 +152,10 @@ extension BuildContextEasyLocalizationExtension on BuildContext {
   ///     GlobalCupertinoLocalizations.delegate
   ///   ],
   /// ```
-  List<LocalizationsDelegate> get localizationDelegates =>
-      EasyLocalization.of(this)!.delegates;
+  List<LocalizationsDelegate> get localizationDelegates => EasyLocalization.of(this)!.delegates;
 
   /// Clears a saved locale from device storage
-  Future<void> deleteSaveLocale() =>
-      EasyLocalization.of(this)!.deleteSaveLocale();
+  Future<void> deleteSaveLocale() => EasyLocalization.of(this)!.deleteSaveLocale();
 
   /// Getting device locale from platform
   Locale get deviceLocale => EasyLocalization.of(this)!.deviceLocale;
