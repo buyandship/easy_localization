@@ -171,6 +171,14 @@ class EasyLocalizationController extends ChangeNotifier {
     EasyLocalization.logger('Force reload');
   }
 
+  Future<void> manualLoad(Locale locale, {required Map<String, dynamic> translations}) async {
+    _locale = locale;
+    _translations = Translations(translations);
+    notifyListeners();
+    EasyLocalization.logger('Manual load locale $locale');
+    await _saveLocale(_locale);
+  }
+
   Future<void> setLocale(Locale l) async {
     _locale = l;
     await loadTranslations();

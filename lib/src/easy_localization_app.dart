@@ -278,6 +278,10 @@ class _EasyLocalizationProvider extends InheritedWidget {
     await _localeState.forceReload();
   }
 
+  Future<void> manualLoadTranslation(Locale locale, {required Map<String, dynamic> translations}) async {
+    await _localeState.manualLoad(locale, translations: translations);
+  }
+
   /// Clears a saved locale from device storage
   Future<void> deleteSaveLocale() async {
     await _localeState.deleteSaveLocale();

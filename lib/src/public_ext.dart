@@ -131,6 +131,9 @@ extension BuildContextEasyLocalizationExtension on BuildContext {
   /// Force reload
   Future<void> forceReload() async => EasyLocalization.of(this)!.forceReload();
 
+  /// Force reload
+  Future<void> manualLoad(Locale locale, {required Map<String, dynamic> translations}) async => EasyLocalization.of(this)!.manualLoadTranslation(locale, translations: translations);
+
   /// Old Change app locale
   @Deprecated('This is the func used in the old version of EasyLocalization. The modern func is `setLocale(val)` . '
       'This feature was deprecated after v3.0.0')
